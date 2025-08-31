@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jerome Nabil Labib — Portfolio</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#0a192f;      /* navy */
+      --secondary:#1d3557;    /* deep blue */
+      --accent:#64ffda;       /* teal */
+      --accent-2:#ff6b6b;     /* coral */
+      --accent-3:#fcbf49;     /* amber */
+      --muted:#8892b0;        /* slate */
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Poppins',system-ui,-apple-system,"Segoe UI",Roboto,Arial,Helvetica,sans-serif;
+      color:#0b1220;
+      background: linear-gradient(135deg, #eef3f8 0%, #ffffff 100%);
+    }
+    /* NAVBAR */
+    .navbar{background:linear-gradient(90deg,var(--primary),var(--secondary));}
+    .navbar-brand{font-weight:800;color:#fff !important;letter-spacing:.5px}
+    .nav-link{color:#fff !important;margin:0 .6rem;font-weight:500;opacity:.9}
+    .nav-link:hover,.nav-link.active{color:var(--accent) !important;opacity:1}
+
+    /* HERO */
+    header.hero{
+      min-height:100vh;
+      display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;
+      background:
+        radial-gradient(1200px 600px at 100% 0%, rgba(100,255,218,.15), transparent 60%),
+        radial-gradient(1000px 500px at 0% 100%, rgba(255,107,107,.15), transparent 60%),
+        linear-gradient(120deg, #1d3557, #0a192f),
+        url('https://images.unsplash.com/photo-1527430253228-e93688616381?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      position:relative;
+    }
+    .hero h1{font-size:clamp(2rem,4vw,4rem);font-weight:800;margin-bottom:.5rem;letter-spacing:.5px}
+    .hero .typed{font-size:clamp(1rem,2.2vw,1.5rem); color: var(--accent-3); font-weight:700}
+    .hero .lead{color:#e8efff;opacity:.9}
+    .cta .btn{
+      border-radius:30px;padding:.8rem 1.4rem;font-weight:700;
+      transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .btn-accent{background:linear-gradient(90deg,var(--accent-2),var(--accent-3));color:#111;border:0}
+    .btn-accent:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 10px 25px rgba(0,0,0,.25)}
+    .btn-outline{border:2px solid #fff;color:#fff}
+    .btn-outline:hover{background:#fff;color:#111}
+
+    /* SECTIONS */
+    section{padding:96px 0}
+    .section-title{font-weight:800;text-align:center;margin-bottom:48px}
+    .section-title .kicker{display:block;color:var(--accent);font-size:.9rem;letter-spacing:.16em;text-transform:uppercase}
+
+    /* CARDS */
+    .card{border:0;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.08);transition:transform .35s ease, box-shadow .35s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
+    .chip{display:inline-block;border-radius:999px;padding:.35rem .8rem;font-size:.85rem;background:#f1f5f9;margin:.25rem .25rem 0 0}
+
+    /* TIMELINE */
+    .timeline{position:relative}
+    .timeline:before{content:"";position:absolute;left:24px;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--accent),transparent)}
+    .timeline-item{position:relative;padding-left:72px;margin-bottom:28px}
+    .timeline-item:before{content:"";position:absolute;left:16px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 4px rgba(100,255,218,.25)}
+
+    /* SKILLS */
+    .skill-badge{border:2px solid #e6eef9;border-radius:14px;padding:.6rem .9rem;font-weight:600;margin:.35rem;display:inline-flex;gap:.5rem;align-items:center}
+    .skill-badge i{opacity:.9}
+
+    /* PROJECT IMAGE PLACEHOLDER */
+    .project-thumb{height:180px;background:linear-gradient(135deg,#dfe9f3,#ffffff);border-top-left-radius:18px;border-top-right-radius:18px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#64748b}
+
+    /* FOOTER */
+    footer{background:linear-gradient(90deg,var(--secondary),var(--primary));color:#fff;padding:28px 0}
+
+    /* BACK TO TOP */
+    #backToTop{position:fixed;right:18px;bottom:18px;z-index:999;border-radius:50%;width:52px;height:52px;display:none;align-items:center;justify-content:center;border:0;
+      background:linear-gradient(135deg,var(--accent),var(--accent-3));color:#111;font-weight:900;box-shadow:0 10px 24px rgba(0,0,0,.18);transition:transform .2s}
+    #backToTop:hover{transform:translateY(-2px)}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">Jerome Nabil</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / COVER -->
+  <header id="home" class="hero">
+    <div class="container py-5" data-aos="zoom-in">
+      <h1>Jerome Nabil Labib</h1>
+      <p class="typed mt-2"><span id="typed"></span></p>
+      <p class="lead mt-2">A motivated Computer Science student from Cairo University seeking to apply my skills in Python, C++, and Full‑Stack .NET development to contribute to innovative projects.</p>
+      <div class="cta mt-3">
+        <a href="#projects" class="btn btn-accent me-2"><i class="fa-solid fa-diagram-project me-1"></i> View My Work</a>
+        <a href="#contact" class="btn btn-outline"><i class="fa-solid fa-paper-plane me-1"></i> Get In Touch</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up"><span class="kicker">About</span>Hello, I'm Jerome.</h2>
+      <div class="row g-4 align-items-center">
+        <div class="col-md-4" data-aos="fade-right">
+          <img src="/Images/me1.jpg" alt="Jerome headshot" class="img-fluid rounded-4 shadow" />
+        </div>
+        <div class="col-md-8" data-aos="fade-left">
+          <p>I am a passionate and driven third‑year Computer Science student at <strong>Cairo University</strong> with a current <strong>GPA of 3.1/4.0</strong>. My journey in technology is fueled by a desire to solve complex problems and build efficient, scalable software solutions.</p>
+          <p>My practical experience includes internships as a <strong>Full‑Stack .NET Developer</strong> with the <strong>Digital Egypt Pioneers Initiative (DEPI)</strong> and as a <strong>Data Analyst</strong> at <strong>Qatari Diar Egypt</strong>. These roles helped me deliver full‑stack applications and contribute to data‑driven decision‑making.</p>
+          <p>Outside academics and work, I volunteer teaching computer skills to children and other age groups, and I'm active in the <strong>Scouts</strong>, where I continue to grow teamwork and leadership skills.</p>
+          <div class="mt-3">
+            <span class="chip"><i class="fa-solid fa-location-dot me-1"></i> Cairo, Egypt</span>
+            <span class="chip"><i class="fa-solid fa-language me-1"></i> English & Arabic</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="bg-light-subtle">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up"><span class="kicker">Education</span>Where I Study</h2>
+      <div class="card p-4" data-aos="fade-up">
+        <div class="d-md-flex justify-content-between align-items-start">
+          <div>
+            <h5 class="mb-1">Cairo University — B.Sc. in Computer Science</h5>
+            <div class="text-muted">Sep 2023 – May 2027 (Third‑year) • GPA: 3.1/4.0</div>
+          </div>
+          <div class="mt-3 mt-md-0"><span class="chip"><i class="fa-solid fa-graduation-cap me-1"></i> Coursework: OOP, DSA, Web, DB</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up"><span class="kicker">Skills</span>What I Work With</h2>
+      <div class="row g-3" data-aos="fade-up">
+        <div class="col-lg-6">
+          <div class="card p-4 h-100">
+            <h6 class="text-uppercase text-muted mb-3">Programming & Development</h6>
+            <div>
+              <span class="skill-badge"><i class="fa-solid fa-code"></i> C#</span>
+              <span class="skill-badge"><i class="fa-solid fa-code"></i> Python</span>
+              <span class="skill-badge"><i class="fa-solid fa-code"></i> C++</span>
+              <span class="skill-badge"><i class="fa-brands fa-html5"></i> HTML5</span>
+              <span class="skill-badge"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+              <span class="skill-badge"><i class="fa-brands fa-js"></i> JavaScript</span>
+            </div>
+            <hr>
+            <div>
+              <span class="skill-badge"><i class="fa-solid fa-diagram-project"></i> .NET Core</span>
+              <span class="skill-badge"><i class="fa-solid fa-window-restore"></i> ASP.NET MVC</span>
+              <span class="skill-badge"><i class="fa-solid fa-plug"></i> Web API</span>
+              <span class="skill-badge"><i class="fa-solid fa-database"></i> SQL Server</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card p-4 h-100">
+            <h6 class="text-uppercase text-muted mb-3">Concepts & Tools</h6>
+            <div>
+              <span class="skill-badge"><i class="fa-solid fa-cubes"></i> OOP</span>
+              <span class="skill-badge"><i class="fa-solid fa-sitemap"></i> Data Structures & Algorithms</span>
+              <span class="skill-badge"><i class="fa-solid fa-repeat"></i> SDLC</span>
+              <span class="skill-badge"><i class="fa-solid fa-lock"></i> Basic Encryption</span>
+              <span class="skill-badge"><i class="fa-brands fa-git-alt"></i> Git/GitHub</span>
+              <span class="skill-badge"><i class="fa-solid fa-table"></i> Power Query (Excel)</span>
+              <span class="skill-badge"><i class="fa-solid fa-chart-column"></i> Power BI</span>
+              <span class="skill-badge"><i class="fa-brands fa-microsoft"></i> Power Apps</span>
+              <span class="skill-badge"><i class="fa-solid fa-laptop-code"></i> Visual Studio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="bg-light-subtle">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up"><span class="kicker">Experience</span>Where I've Worked</h2>
+      <div class="timeline" data-aos="fade-up">
+        <div class="timeline-item">
+          <div class="card p-4">
+            <div class="d-flex justify-content-between flex-wrap">
+              <h5 class="mb-1">Full‑Stack .NET Web Developer — Intern</h5>
+              <span class="text-muted">Jul 2025 – Present • Remote</span>
+            </div>
+            <div class="text-muted">Digital Egypt Pioneers Initiative (DEPI)</div>
+            <ul class="mt-3 mb-0">
+              <li>Selected for a 6‑month national training program supported by the Ministry of Communications and Information Technology.</li>
+              <li>Developing full‑stack applications with C#, .NET Core, ASP.NET MVC, SQL Server, HTML5, CSS3, JavaScript.</li>
+              <li>Hands‑on work with web architecture, data‑driven apps, and capstone projects; collaborating in teams to deliver scalable solutions.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="card p-4">
+            <div class="d-flex justify-content-between flex-wrap">
+              <h5 class="mb-1">Data Analyst — Intern</h5>
+              <span class="text-muted">Jun 2025 – Aug 2025 • Cairo</span>
+            </div>
+            <div class="text-muted">Qatari Diar Egypt</div>
+            <ul class="mt-3 mb-0">
+              <li>Worked with databases and SQL for managing and analyzing structured data; Excel for cleaning and reporting.</li>
+              <li>Built applications with Microsoft Power Apps and developed dashboards in Power BI.</li>
+              <li>Contributed to data‑driven decision‑making in a professional environment.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up"><span class="kicker">Services</span>What I Can Do For You</h2>
+      <div class="row g-4" data-aos="fade-up">
+        <div class="col-md-4">
+          <div class="card p-4 h-100">
+            <h5><i class="fa-solid fa-window-restore me-2 text-danger"></i> Full‑Stack .NET Web Apps</h5>
+            <p class="mb-0">ASP.NET MVC/Web API, SQL Server, authentication, product management, dashboards.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card p-4 h-100">
+            <h5><i class="fa-solid fa-database me-2 text-success"></i> Data & Dashboards</h5>
+            <p class="mb-0">SQL queries, data modeling, <strong>Power BI</strong> reporting, <strong>Power Apps</strong> forms & workflows.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card p-4 h-100">
+            <h5><i class="fa-solid fa-code me-2 text-primary"></i> C++ / Python Development</h5>
+            <p class="mb-0">Problem‑solving utilities, algorithms, OOP projects, scripting & automation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="bg-light-subtle">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up"><span class="kicker">Projects</span>Selected Work</h2>
+      <div class="row g-4" data-aos="fade-up">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="project-thumb">E‑Commerce Platform</div>
+            <div class="card-body">
+              <h5 class="card-title">Full‑Stack E‑Commerce Platform (Capstone)</h5>
+              <p class="card-text">A data‑driven web app built during DEPI using <strong>C#</strong>, <strong>ASP.NET MVC</strong>, and <strong>SQL Server</strong> with user authentication, product management, and shopping cart.</p>
+              <div>
+                <span class="chip">C#</span>
+                <span class="chip">ASP.NET MVC</span>
+                <span class="chip">SQL Server</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="project-thumb">Sales Dashboard</div>
+            <div class="card-body">
+              <h5 class="card-title">Sales Analysis Dashboard</h5>
+              <p class="card-text">Interactive <strong>Power BI</strong> dashboard for Qatari Diar Egypt. Built ETL with <strong>SQL</strong> and <strong>Power Query</strong> to surface actionable insights.</p>
+              <div>
+                <span class="chip">Power BI</span>
+                <span class="chip">Power Query</span>
+                <span class="chip">SQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Extra personal/academic projects -->
+      <div class="row g-4 mt-1" data-aos="fade-up">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="project-thumb">C++ OOP</div>
+            <div class="card-body">
+              <h6 class="mb-1">Tic‑Tac‑Toe Variations (8 versions)</h6>
+              <p class="mb-0 text-muted">C++ OOP game projects exploring patterns & design.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="project-thumb">Ciphers</div>
+            <div class="card-body">
+              <h6 class="mb-1">Route & Polybius Square Cipher Tools</h6>
+              <p class="mb-0 text-muted">Encryption/decryption utilities implemented in C++.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="project-thumb">Image Filters</div>
+            <div class="card-body">
+              <h6 class="mb-1">“Baby Photoshop” (15 Filters)</h6>
+              <p class="mb-0 text-muted">C++ image processing mini‑suite with multiple effects.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="project-thumb">Math</div>
+            <div class="card-body">
+              <h6 class="mb-1">Fraction Calculator</h6>
+              <p class="mb-0 text-muted">C++ calculator handling arithmetic with fractions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="project-thumb">Sorting</div>
+            <div class="card-body">
+              <h6 class="mb-1">Sorting System (Templated)</h6>
+              <p class="mb-0 text-muted">Multiple algorithms in a reusable C++ template design.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="project-thumb">Python</div>
+            <div class="card-body">
+              <h6 class="mb-1">Number System Converter</h6>
+              <p class="mb-0 text-muted">Python script to convert values across numeral systems.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up"><span class="kicker">Achievements</span>Milestones</h2>
+      <div class="row g-3" data-aos="fade-up">
+        <div class="col-md-4"><div class="card p-4 h-100"><i class="fa-solid fa-award me-2 text-warning"></i> Selected for <strong>DEPI</strong> national training program (2025).</div></div>
+        <div class="col-md-4"><div class="card p-4 h-100"><i class="fa-solid fa-people-roof me-2 text-success"></i> Volunteered teaching computer skills (kids & adults).</div></div>
+        <div class="col-md-4"><div class="card p-4 h-100"><i class="fa-solid fa-compass-drafting me-2 text-info"></i> Active <strong>Scouts</strong> member — teamwork & leadership.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="bg-light-subtle">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up"><span class="kicker">Testimonials</span>What People Say</h2>
+      <div class="row g-4" data-aos="fade-up">
+        <div class="col-md-6">
+          <div class="card p-4 h-100">
+            <p class="mb-1 fst-italic">“Jerome is a fast learner with a great attitude. His contributions to our dashboards were on point.”</p>
+            <div class="text-muted">— Mentor, Qatari Diar Egypt</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-4 h-100">
+            <p class="mb-1 fst-italic">“Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni fugiat iste excepturi distinctio mollitia.”</p>
+            <div class="text-muted">—template</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up"><span class="kicker">Contact</span>Let's Build Something Great</h2>
+      <div class="row g-4 align-items-stretch" data-aos="fade-up">
+        <div class="col-lg-12">
+          <div class="card p-4 h-100">
+            <h5 class="mb-3">Quick Details</h5>
+            <div class="row g-3">
+              <div class="col-12 col-md-6"><i class="fa-solid fa-envelope me-2 text-danger"></i> <a href="mailto:jeromenabil9@gmail.com">jeromenabil9@gmail.com</a></div>
+              <div class="col-12 col-md-6"><i class="fa-solid fa-phone me-2 text-success"></i> <a href="tel:+201200666453">+20 120 066 6453</a></div>
+              <div class="col-12 col-md-6"><i class="fa-brands fa-linkedin me-2 text-primary"></i> <a target="_blank" href="https://linkedin.com/in/jeromenabil">linkedin.com/in/jeromenabil</a></div>
+              <div class="col-12 col-md-6"><i class="fa-solid fa-location-dot me-2 text-warning"></i> Cairo, Egypt</div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-6">
+          <div class="card p-4 h-100">
+            <h5 class="mb-3">Send a Message</h5>
+            <form onsubmit="event.preventDefault(); alert('Thanks Jerome! This demo form can be wired to EmailJS or a backend.');">
+              <div class="mb-3"><label class="form-label">Name</label><input class="form-control" required></div>
+              <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" required></div>
+              <div class="mb-3"><label class="form-label">Message</label><textarea class="form-control" rows="4" required></textarea></div>
+              <button class="btn btn-accent" type="submit"><i class="fa-regular fa-paper-plane me-1"></i> Send</button>
+            </form>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container text-center">
+      <div class="small">© 2025 Jerome Nabil Labib • Built with Bootstrap, AOS & Typed.js</div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    // AOS
+    AOS.init({ duration: 1000, once: true });
+
+    // Typed.js hero roles
+    new Typed('#typed', {
+      strings: [
+        'Full‑Stack .NET Developer',
+        'Python & C++ Problem Solver',
+        'Power BI & Data Analyst'
+      ],
+      typeSpeed: 55,
+      backSpeed: 35,
+      backDelay: 1200,
+      loop: true
+    });
+
+    // Back to Top logic
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      const show = document.documentElement.scrollTop > 240;
+      backToTop.style.display = show ? 'flex' : 'none';
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section, header.hero');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const setActive = () => {
+      let cur = 'home';
+      sections.forEach(sec => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 120;
+        const height = sec.offsetHeight;
+        if (top >= offset && top < offset + height) cur = sec.id || 'home';
+      });
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + cur);
+      });
+    };
+    window.addEventListener('scroll', setActive);
+    setActive();
+  </script>
+</body>
+</html>
